@@ -319,12 +319,11 @@
         justify-content: space-between;
     }
     .t-button{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        .num(2px);
+        box-sizing: border-box;
+        display: inline-block;
+        //.num(2px);
         .percent(5px);
-        border: @num solid #A832F3;
+        border: 1px solid #A832F3;
         border-radius: @percent;
         text-align: center;
         color: #FFFFFF;
@@ -333,22 +332,26 @@
         width: @width;
         .height(52px);
         height: @height;
-        line-height: @height;
+        .lineHeight(50px);
+        line-height: @lineHeight;
         cursor: pointer;
         user-select: none;
+        vertical-align: middle;
         img{
-            .width(16px);
+            display: inline-block;
+            .width(17px);
             width: @width;
-            .height(16px);
+            .height(17px);
             height: @height;
             vertical-align: middle;
             position: relative;
             top: 0;
             .left(13px);
             margin-left: @left;
-
         }
         &.bg{
+            .lineHeight(52px);
+            line-height: @lineHeight;
             background: #A832F3;
             border: none;
         }
