@@ -384,6 +384,7 @@ const Home:React.FC<HomePropsType> = (props, context) => {
     const scrollNumber:number = windowClientHeight - clientHeight - top - (342 / scale);
     const svgRef:any = useRef();
     const imgRef:any = useRef();
+    const s1Ref:any = useRef();
     const s2Ref:any = useRef();
     const s3Ref:any = useRef();
     const s4Ref:any = useRef();
@@ -395,11 +396,6 @@ const Home:React.FC<HomePropsType> = (props, context) => {
         setSvgHeight(svgRef.current.clientHeight)
         setHeight(imgRef.current.clientHeight)
         setTop(imgRef.current.y)
-        if(scrollNumber > 0) {
-            setAnimation2(true);
-        } else {
-            setAnimation2(false);
-        }
     }, [imgRef, svgRef]);
 
     useEffect(() => {
@@ -412,6 +408,11 @@ const Home:React.FC<HomePropsType> = (props, context) => {
             },
             loop: true,
         });
+        if(scrollNumber > s1Ref.current.clientHeight) {
+            setAnimation2(true);
+        } else {
+            setAnimation2(false);
+        }
         return () => {}
     }, []);
 
@@ -456,7 +457,7 @@ const Home:React.FC<HomePropsType> = (props, context) => {
 
     return (
         <div onScrollCapture={scroll} className="t-home-section">
-            <div style={{ height: `${clientHeight + top + (342 / scale)}px` }} className="t-section s1">
+            <div ref={s1Ref} style={{ height: `${clientHeight + top + (342 / scale)}px` }} className="t-section s1">
                 <THead />
                 <img className="t-point" src={require("./images/s1/point.svg").default} alt=""/>
                 <div style={{ height: `${clientHeight}px` }} className="t-box">
