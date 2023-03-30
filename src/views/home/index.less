@@ -169,36 +169,37 @@
     box-sizing: border-box;
     position: relative;
     //.height(1090.54px);
-    .height(1378px);
+    .height(1178px);
     height: @height;
-    .bottom(287.46px);
-    padding: 0 0 @bottom 0;
+    //.bottom(187.46px);
+    padding: 0;
 
     .t-point{
         position: relative;
         width: 100%;
         object-fit: cover;
         .height(622.76px);
-        height: @height;
+        height: 65%;
     }
     .t-line{
         .top(26.24px);
-        margin: @top 0 0 0;
+        margin: 20px 0 0 0;
         position: relative;
         width: 100%;
         object-fit: cover;
         .height(387px);
-        height: @height;
+        height: calc(35% - 20px);
     }
     .t-sun{
-        .width(1106.86px);
-        .height(1066.54px);
+        .width(1328.232px);
+        .height(1279.848px);
         width: @width;
         height: @height;
         background: url('./images/s1/sun.png') no-repeat;
         background-size: 100% 100%;
         position: absolute;
-        bottom: @bottom;
+        //top: 50%;
+        bottom: 0;
         left: 50%;
         transform: translateX(-50%);
         z-index: 2;
@@ -373,9 +374,9 @@
     margin: 0 auto;
     box-sizing: border-box;
     .num(260px);
-    .top(342px);
+    .top(50px);
     .bottom(271px);
-    padding: 0 @num @bottom @num;
+    padding: 160px @num @bottom @num;
     filter: alpha(opacity=0);
     -moz-opacity: 0;
     -khtml-opacity: 0;

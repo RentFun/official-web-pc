@@ -9,6 +9,9 @@ type HomePropsType = {};
 type ChildPropsType = {
     animation: boolean
 };
+type screenPropsType = {
+    clientHeight: number,
+};
 const openUrl = (url:any):void => {
     if(url)
         window.open(url, '_blank');
@@ -216,12 +219,13 @@ const t7Data: t7Block[] = [
     }
 ];
 
-const TSection1 = (forwardRef((props:HomePropsType, ref:any) => {
+const TSection1 = (forwardRef((props:screenPropsType, ref:any) => {
+    const { clientHeight } = props;
     return(
-        <div ref={ref} className="t-section s1">
+        <div ref={ref} style={{ height: `${clientHeight < 850 ? '850px' : clientHeight + 'px'}` }} className="t-section s1">
             <THead />
             <img className="t-point" src={require("./images/s1/point.svg").default} alt=""/>
-            <img className="t-line" src={require("./images/s5/line.svg").default} alt=""/>
+            <img className="t-line" src={require("./images/s1/line.svg").default} alt=""/>
             <div className="t-sun">
                 <img className="t-logo-center" src={require("./images/s1/logo2.png")} alt=""/>
                 <div className="t-title">Liquidity for NFT Utility</div>
@@ -409,7 +413,6 @@ const TSection7: React.FC<ChildPropsType> = (props) => {
 }
 let swiperObj: any;
 const Home:React.FC<HomePropsType> = (props, context) => {
-    const [ scrollNumber, setScrollNumber ] = useState<number>(0);
     const [ animation2, setAnimation2 ] = useState<boolean>(false);
     const [ animation3, setAnimation3 ] = useState<boolean>(false);
     const [ animation4, setAnimation4 ] = useState<boolean>(false);
@@ -417,7 +420,7 @@ const Home:React.FC<HomePropsType> = (props, context) => {
     const [ animation5, setAnimation5 ] = useState<boolean>(false);
     const [ animation6, setAnimation6 ] = useState<boolean>(false);
     const [ animation7, setAnimation7 ] = useState<boolean>(false);
-    const windowClientHeight: number = window.document.body.clientHeight;
+    const windowClientHeight: number = document.body.clientHeight || document.documentElement.clientHeight;
     const s1Ref:any = useRef();
     const s2Ref:any = useRef();
     const s3Ref:any = useRef();
@@ -426,8 +429,12 @@ const Home:React.FC<HomePropsType> = (props, context) => {
     const s5Ref:any = useRef();
     const s6Ref:any = useRef();
     useLayoutEffect(() => {
-        setScrollNumber(windowClientHeight - s1Ref.current.clientHeight)
-    }, [ window ]);
+        if(windowClientHeight > s1Ref.current.clientHeight) {
+            setAnimation2(true);
+        } else {
+            setAnimation2(false);
+        }
+    }, [ document ]);
 
     useEffect(() => {
         swiperObj = new Swiper ('.swiper-container', {
@@ -440,11 +447,7 @@ const Home:React.FC<HomePropsType> = (props, context) => {
             loop: true,
             observer: true,
         });
-        if(scrollNumber > s1Ref.current.clientHeight) {
-            setAnimation2(true);
-        } else {
-            setAnimation2(false);
-        }
+
         return () => {}
     }, []);
 
@@ -457,45 +460,45 @@ const Home:React.FC<HomePropsType> = (props, context) => {
             s5TH,
             s6TH,
         ] = [
-            s2Ref.current.clientHeight,
+            s2Ref.current.clientHeight + 160,
             (s2Ref.current.clientHeight + s3Ref.current.clientHeight),
             (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight),
             (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight + swiperRef.current.clientHeight),
             (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight + swiperRef.current.clientHeight + s5Ref.current.clientHeight),
             (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight + swiperRef.current.clientHeight + s5Ref.current.clientHeight + s6Ref.current.clientHeight)
         ];
-        if((scrollNumber + event.target.scrollTop) > 0){
+        if(event.target.scrollTop > 0){
             setAnimation2(true);
         } else {
             setAnimation2(false);
         }
-        if((scrollNumber + event.target.scrollTop) > s2TH){
+        if(event.target.scrollTop > s2TH){
             setAnimation3(true);
         } else {
             setAnimation3(false);
         }
-        if((scrollNumber + event.target.scrollTop) > s3TH){
+        if(event.target.scrollTop > s3TH){
             setAnimation4(true);
         } else {
             setAnimation4(false);
         }
-        if((scrollNumber + event.target.scrollTop) > swiperTH){
+        if(event.target.scrollTop > swiperTH){
             swiperObj.slideToLoop(0);
             setAnimationSwiper(true);
         } else {
             setAnimationSwiper(false);
         }
-        if((scrollNumber + event.target.scrollTop) > s4TH){
+        if(event.target.scrollTop > s4TH){
             setAnimation5(true);
         } else {
             setAnimation5(false);
         }
-        if((scrollNumber + event.target.scrollTop) > s5TH){
+        if(event.target.scrollTop > s5TH){
             setAnimation6(true);
         } else {
             setAnimation6(false);
         }
-        if((scrollNumber + event.target.scrollTop) > s6TH){
+        if(event.target.scrollTop > s6TH){
             setAnimation7(true);
         } else {
             setAnimation7(false);
@@ -504,7 +507,7 @@ const Home:React.FC<HomePropsType> = (props, context) => {
 
     return (
         <div onScrollCapture={scroll} className="t-home-section">
-            <TSection1 ref={s1Ref} />
+            <TSection1 ref={s1Ref} clientHeight={windowClientHeight}/>
             <TSection2 ref={s2Ref} animation={animation2}/>
             <TSection3 ref={s3Ref} animation={animation3}/>
             <TSection4 ref={s4Ref} animation={animation4}/>
