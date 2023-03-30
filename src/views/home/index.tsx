@@ -115,7 +115,7 @@ const t4Data: t4Block[] = [
     {
         icon: require('./images/s4/1.png'),
         title: 'Your Keys, Your NFTs',
-        description: 'NFT owners maintain the exclusive ownership of the vault contract address that hold your NFTs.',
+        description: 'NFT owners maintain the exclusive ownership of the vault contract address the vault contract address that holds their NFTs.',
     },
     {
         icon: require('./images/s4/2.png'),
@@ -447,7 +447,6 @@ const Home:React.FC<HomePropsType> = (props, context) => {
             loop: true,
             observer: true,
         });
-
         return () => {}
     }, []);
 

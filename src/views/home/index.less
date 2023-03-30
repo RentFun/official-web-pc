@@ -319,14 +319,16 @@
         justify-content: space-between;
     }
     .t-button{
-        display: inline-block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         .num(2px);
         .percent(5px);
         border: @num solid #A832F3;
         border-radius: @percent;
         text-align: center;
         color: #FFFFFF;
-        .fontSize(20px);
+        .fontSize(24px);
         .width(254px);
         width: @width;
         .height(52px);
@@ -335,9 +337,9 @@
         cursor: pointer;
         user-select: none;
         img{
-            .width(14px);
+            .width(16px);
             width: @width;
-            .height(14px);
+            .height(16px);
             height: @height;
             vertical-align: middle;
             position: relative;
