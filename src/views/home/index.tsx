@@ -1,9 +1,9 @@
 import React, { useRef, useLayoutEffect, useState, useEffect, forwardRef } from 'react';
-import swiper, { Autoplay } from 'swiper';
+import Swiper, { Autoplay, EffectFade } from 'swiper';
 import 'swiper/css';
 import './index.less';
 
-swiper.use([ Autoplay ]);
+Swiper.use([ Autoplay, EffectFade ]);
 
 type HomePropsType = {};
 type ChildPropsType = {
@@ -98,7 +98,7 @@ const t3Data: t3Block[] = [
     {
         icon: require('./images/s3/3.png'),
         title: 'Rentable Address',
-        description: 'Could rent an address containing multiple NFTs to fully experience games that require multiple NFTs to play.',
+        description: 'Renter could rent an address containing multiple NFTs to fully experience games that require multiple NFTs to play.',
     }
 ];
 
@@ -124,6 +124,21 @@ const t4Data: t4Block[] = [
         title: 'Renters Whitelist',
         description: 'In addition to the public model, NFT owners can also opt for the private model to lend  NFTs to the whitelist addresses.',
     }
+];
+
+interface swiperBlock {
+    text: string,
+}
+const swiperData: swiperBlock[] = [
+    {
+        text: 'Co-contribute',
+    },
+    {
+        text: 'Co-govern',
+    },
+    {
+        text: 'Co-share',
+    },
 ];
 
 interface t5Block {
@@ -171,8 +186,55 @@ const t5Data: t5Block[] = [
         icon: require('./images/s5/10.png'),
         url: 'https://twitter.com/_martialfarts',
     },
-
 ];
+
+
+interface t7Block {
+    icon: string,
+    url: string
+}
+const t7Data: t7Block[] = [
+    {
+        icon: require('./images/s7/1.png'),
+        url: 'http://discord.gg/rentfun'
+    },
+    {
+        icon: require('./images/s7/2.png'),
+        url: 'https://mirror.xyz/rentfun.eth'
+    },
+    {
+        icon: require('./images/s7/3.png'),
+        url: 'https://twitter.com/rentfun_io'
+    },
+    {
+        icon: require('./images/s7/4.png'),
+        url: 'https://github.com/RentFun'
+    },
+    {
+        icon: require('./images/s7/5.png'),
+        url: 'https://forum.rentfun.io/'
+    }
+];
+
+const TSection1 = (forwardRef((props:HomePropsType, ref:any) => {
+    return(
+        <div ref={ref} className="t-section s1">
+            <THead />
+            <img className="t-point" src={require("./images/s1/point.svg").default} alt=""/>
+            <img className="t-line" src={require("./images/s5/line.svg").default} alt=""/>
+            <div className="t-sun">
+                <img className="t-logo-center" src={require("./images/s1/logo2.png")} alt=""/>
+                <div className="t-title">Liquidity for NFT Utility</div>
+                <div className="t-title-sub">Rent Original NFTs Through Access Delegation on Arbitrum</div>
+                <div className="t-icon">
+                    <img onClick={openUrl.bind(this, 'https://twitter.com/rentfun_io')} src={require("./images/s1/3.png")} alt=""/>
+                    <img onClick={openUrl.bind(this, 'https://github.com/RentFun')}  src={require("./images/s1/2.png")} alt=""/>
+                    <img onClick={openUrl.bind(this, 'http://discord.gg/rentfun')}  src={require("./images/s1/1.png")} alt=""/>
+                </div>
+            </div>
+        </div>
+    )
+}));
 
 const TSection2 = (forwardRef((props:ChildPropsType, ref:any) => {
     const { animation } = props;
@@ -192,7 +254,7 @@ const TSection2 = (forwardRef((props:ChildPropsType, ref:any) => {
                         POC Demo
                         <img src={require("./images/s2/arrow.png")} alt=""/>
                     </span>
-                    <span onClick={openUrl.bind(this,'https://docs.rentfun.io/')} className="t-button">Docs</span>
+                    <span onClick={openUrl.bind(this,'https://docs.rentfun.io/access-delegation-protocol')} className="t-button">Docs</span>
                 </div>
             </div>
             <div className="t-flex r">
@@ -204,7 +266,7 @@ const TSection2 = (forwardRef((props:ChildPropsType, ref:any) => {
                 </div>
                 <div className="t-2-r-title-second">SDK: Front-end  Plug & Play</div>
                 <div className="t-2-r-title-third">
-                    RentFun offers an SDK for NFT issuers to <br/>
+                    RentFun offers a SDK for NFT issuers to <br/>
                     seamlessly integrate into their front-end <br/>
                     codes within 2~3 hours.
                 </div>
@@ -276,9 +338,29 @@ const TSectionSwiper = (forwardRef((props:ChildPropsType, ref:any) => {
             <div className="t-swiper-section">Our Ever Growing Community: </div>
             <div className="t-swiper-section l swiper-container overflow">
                 <div className="swiper-wrapper">
-                    <div className={`t-slider swiper-slide`}>Co-contribute</div>
-                    <div className={`t-slider swiper-slide`}>Co-govern</div>
-                    <div className={`t-slider swiper-slide`}>Co-share</div>
+                    {
+                        swiperData.map((item:swiperBlock, idx: number) => {
+                            return  <div className="t-slider swiper-slide" key={`swiper${idx}`}>{ item.text }</div>
+                        })
+                    }
+                </div>
+            </div>
+        </div>
+    )
+}));
+
+const TSection5 = (forwardRef((props:ChildPropsType, ref:any) => {
+    const { animation } = props;
+    return(
+        <div ref={ref}  className={`t-section s5 ${animation ? 'anOpacity' : ''}`} >
+            <img className="t-line" src={require("./images/s5/line.svg").default} alt=""/>
+            <div className="t-box">
+                <div  className="t-pos">
+                    {
+                        t5Data.map((item: t5Block, idx: number) => {
+                            return  <img  onClick={openUrl.bind(this,item.url)} className={`t-icon-${idx + 1}`} key={`t-icon-${idx}`} src={item.icon} alt=""/>
+                        })
+                    }
                 </div>
             </div>
         </div>
@@ -299,48 +381,6 @@ const TSection6 = (forwardRef((props:ChildPropsType, ref:any) => {
     )
 }));
 
-interface t7Block {
-    icon: string,
-    url: string
-}
-const t7Data: t7Block[] = [
-    {
-        icon: require('./images/s7/1.png'),
-        url: 'http://discord.gg/rentfun'
-    },
-    {
-        icon: require('./images/s7/2.png'),
-        url: 'https://mirror.xyz/rentfun.eth'
-    },
-    {
-        icon: require('./images/s7/3.png'),
-        url: 'https://twitter.com/rentfun_io'
-    },
-    {
-        icon: require('./images/s7/4.png'),
-        url: 'https://github.com/RentFun'
-    },
-    {
-        icon: require('./images/s7/5.png'),
-        url: 'https://forum.rentfun.io/'
-    }
-];
-
-const className7 = (idx: number):string => {
-    let className = 't-7-img';
-    if(idx === 0)
-        className += ' i0'
-    else if(idx === 1)
-        className += ' i1'
-    else if(idx === 2)
-        className += ' i2'
-    else if(idx === 3)
-        className += ' i3'
-    else if(idx === 4)
-        className += ' i4'
-    return className;
-}
-
 const TSection7: React.FC<ChildPropsType> = (props) => {
     const { animation } = props;
     return(
@@ -350,7 +390,7 @@ const TSection7: React.FC<ChildPropsType> = (props) => {
             <div className="t-7-icon">
                 {
                     t7Data.map((item: t7Block, idx: number) => {
-                        return <img  onClick={openUrl.bind(this,item.url)}  className={className7(idx)} key={`class7${idx}`} src={item.icon} alt=""/>
+                        return <img  onClick={openUrl.bind(this,item.url)}  className='t-7-img' key={`class7${idx}`} src={item.icon} alt=""/>
                     })
                 }
             </div>
@@ -367,23 +407,17 @@ const TSection7: React.FC<ChildPropsType> = (props) => {
         </div>
     )
 }
-
+let swiperObj: any;
 const Home:React.FC<HomePropsType> = (props, context) => {
-    const [ clientHeight, setHeight ] = useState<number>(0);
-    const [ top, setTop ] = useState<number>(0);
-    const [ svgHeight, setSvgHeight ] = useState<number>(0);
+    const [ scrollNumber, setScrollNumber ] = useState<number>(0);
     const [ animation2, setAnimation2 ] = useState<boolean>(false);
     const [ animation3, setAnimation3 ] = useState<boolean>(false);
     const [ animation4, setAnimation4 ] = useState<boolean>(false);
-    const [ animationSwiperRef, setAnimationSwiperRef ] = useState<boolean>(false);
+    const [ animationSwiper, setAnimationSwiper ] = useState<boolean>(false);
     const [ animation5, setAnimation5 ] = useState<boolean>(false);
     const [ animation6, setAnimation6 ] = useState<boolean>(false);
     const [ animation7, setAnimation7 ] = useState<boolean>(false);
-    const scale: number = (1920 / 1200);
     const windowClientHeight: number = window.document.body.clientHeight;
-    const scrollNumber:number = windowClientHeight - clientHeight - top - (342 / scale);
-    const svgRef:any = useRef();
-    const imgRef:any = useRef();
     const s1Ref:any = useRef();
     const s2Ref:any = useRef();
     const s3Ref:any = useRef();
@@ -391,22 +425,20 @@ const Home:React.FC<HomePropsType> = (props, context) => {
     const swiperRef:any = useRef();
     const s5Ref:any = useRef();
     const s6Ref:any = useRef();
-
     useLayoutEffect(() => {
-        setSvgHeight(svgRef.current.clientHeight)
-        setHeight(imgRef.current.clientHeight)
-        setTop(imgRef.current.y)
-    }, [imgRef, svgRef]);
+        setScrollNumber(windowClientHeight - s1Ref.current.clientHeight)
+    }, [ window ]);
 
     useEffect(() => {
-        new swiper ('.swiper-container', {
-            direction: 'vertical', // 垂直切换选项
-            speed: 2000,
+        swiperObj = new Swiper ('.swiper-container', {
+            direction: 'vertical',
+            speed: 3000,
             autoplay: {
-                delay: 2000,
+                delay: 3000,
                 disableOnInteraction: false
             },
             loop: true,
+            observer: true,
         });
         if(scrollNumber > s1Ref.current.clientHeight) {
             setAnimation2(true);
@@ -416,39 +448,54 @@ const Home:React.FC<HomePropsType> = (props, context) => {
         return () => {}
     }, []);
 
-
     const scroll:any = (event: any) => {
+        const [
+            s2TH,
+            s3TH,
+            swiperTH,
+            s4TH,
+            s5TH,
+            s6TH,
+        ] = [
+            s2Ref.current.clientHeight,
+            (s2Ref.current.clientHeight + s3Ref.current.clientHeight),
+            (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight),
+            (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight + swiperRef.current.clientHeight),
+            (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight + swiperRef.current.clientHeight + s5Ref.current.clientHeight),
+            (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight + swiperRef.current.clientHeight + s5Ref.current.clientHeight + s6Ref.current.clientHeight)
+        ];
         if((scrollNumber + event.target.scrollTop) > 0){
             setAnimation2(true);
         } else {
             setAnimation2(false);
         }
-        if((scrollNumber + event.target.scrollTop) > s2Ref.current.clientHeight){
+        if((scrollNumber + event.target.scrollTop) > s2TH){
             setAnimation3(true);
         } else {
             setAnimation3(false);
         }
-        if((scrollNumber + event.target.scrollTop) > (s2Ref.current.clientHeight + s3Ref.current.clientHeight)){
+        if((scrollNumber + event.target.scrollTop) > s3TH){
             setAnimation4(true);
         } else {
             setAnimation4(false);
         }
-        if((scrollNumber + event.target.scrollTop) > (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight)){
-            setAnimationSwiperRef(true);
+        if((scrollNumber + event.target.scrollTop) > swiperTH){
+            swiperObj.slideToLoop(0);
+            setAnimationSwiper(true);
         } else {
-            setAnimationSwiperRef(false);
+            setAnimationSwiper(false);
         }
-        if((scrollNumber + event.target.scrollTop) > (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight + swiperRef.current.clientHeight)){
+        if((scrollNumber + event.target.scrollTop) > s4TH){
             setAnimation5(true);
         } else {
             setAnimation5(false);
         }
-        if((scrollNumber + event.target.scrollTop) > (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight + swiperRef.current.clientHeight + s5Ref.current.clientHeight)){
+        if((scrollNumber + event.target.scrollTop) > s5TH){
             setAnimation6(true);
         } else {
             setAnimation6(false);
         }
-        if((scrollNumber + event.target.scrollTop) > (s2Ref.current.clientHeight + s3Ref.current.clientHeight + s4Ref.current.clientHeight + swiperRef.current.clientHeight + s5Ref.current.clientHeight + s6Ref.current.clientHeight)){
+        if((scrollNumber + event.target.scrollTop) > s6TH){
             setAnimation7(true);
         } else {
             setAnimation7(false);
@@ -457,37 +504,12 @@ const Home:React.FC<HomePropsType> = (props, context) => {
 
     return (
         <div onScrollCapture={scroll} className="t-home-section">
-            <div ref={s1Ref} style={{ height: `${clientHeight + top + (342 / scale)}px` }} className="t-section s1">
-                <THead />
-                <img className="t-point" src={require("./images/s1/point.svg").default} alt=""/>
-                <div style={{ height: `${clientHeight}px` }} className="t-box">
-                    <img ref={imgRef} className="t-point" src={require("./images/s1/sun.svg").default} alt=""/>
-                    <img className="t-logo-center" src={require("./images/s1/logo2.png")} alt=""/>
-                    <div className="t-title">Liquidity for NFT Utility</div>
-                    <div className="t-title-sub">Rent Original NFTs Through Access Delegation on Arbitrum</div>
-                    <div className="t-icon">
-                        <img onClick={openUrl.bind(this, 'https://twitter.com/rentfun_io')} src={require("./images/s1/3.png")} alt=""/>
-                        <img onClick={openUrl.bind(this, 'https://github.com/RentFun')}  src={require("./images/s1/2.png")} alt=""/>
-                        <img onClick={openUrl.bind(this, 'http://discord.gg/rentfun')}  src={require("./images/s1/1.png")} alt=""/>
-                    </div>
-                </div>
-            </div>
+            <TSection1 ref={s1Ref} />
             <TSection2 ref={s2Ref} animation={animation2}/>
             <TSection3 ref={s3Ref} animation={animation3}/>
             <TSection4 ref={s4Ref} animation={animation4}/>
-            <TSectionSwiper ref={swiperRef} animation={animationSwiperRef}/>
-            <div  ref={s5Ref}  className={`t-section s5 ${animation5 ? 'anOpacity' : ''}`} >
-                <img ref={svgRef} className="t-line" src={require("./images/s5/line.svg").default} alt=""/>
-                <div style={{ height: `${svgHeight}px` }} className="t-box">
-                    <div  className="t-pos">
-                        {
-                            t5Data.map((item: t5Block, idx: number) => {
-                                return  <img  onClick={openUrl.bind(this,item.url)} className={`t-icon-${idx + 1}`} key={`t-icon-${idx}`} src={item.icon} alt=""/>
-                            })
-                        }
-                    </div>
-                </div>
-            </div>
+            <TSectionSwiper ref={swiperRef} animation={animationSwiper}/>
+            <TSection5 ref={s5Ref} animation={animation5}/>
             <TSection6 ref={s6Ref} animation={animation6}/>
             <TSection7 animation={animation7}/>
         </div>

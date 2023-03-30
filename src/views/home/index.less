@@ -122,7 +122,7 @@
         .num(68px);
         margin: 0 @num;
         border-radius: 2px;
-        .fontSize(20px);
+        .fontSize(26px);
         color: #FFFFFF;
         cursor: pointer;
         position: relative;
@@ -144,7 +144,6 @@
             top: 50%;
             transform: translateY(-50%);
         }
-
         .subText{
             display: none;
             color: #A832F3;
@@ -166,24 +165,51 @@
 
 
 
-
-
 .s1{
     box-sizing: border-box;
     position: relative;
-    .height(1090.54px);
-    min-height: @height;
-    .bottom(342px);
+    //.height(1090.54px);
+    .height(1378px);
+    height: @height;
+    .bottom(287.46px);
     padding: 0 0 @bottom 0;
-    .t-box{
-        min-height: 675px;
+
+    .t-point{
+        position: relative;
+        width: 100%;
+        object-fit: cover;
+        .height(622.76px);
+        height: @height;
     }
+    .t-line{
+        .top(26.24px);
+        margin: @top 0 0 0;
+        position: relative;
+        width: 100%;
+        object-fit: cover;
+        .height(387px);
+        height: @height;
+    }
+    .t-sun{
+        .width(1106.86px);
+        .height(1066.54px);
+        width: @width;
+        height: @height;
+        background: url('./images/s1/sun.png') no-repeat;
+        background-size: 100% 100%;
+        position: absolute;
+        bottom: @bottom;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 2;
+    }
+
     .t-logo-center{
         position: absolute;
         z-index: 3;
         .width(98.09px);
         .height(107px);
-        .top(74%);
+        .top(72%);
         width: @width;
         height: @height;
         left: 50%;
@@ -194,7 +220,7 @@
         width: 100%;
         position: absolute;
         z-index: 3;
-        .top(93%);
+        .top(92%);
         left: 0;
         top: @top;
         font-family: 'Plus Jakarta Sans';
@@ -209,7 +235,7 @@
         width: 100%;
         position: absolute;
         z-index: 3;
-        .top(115%);
+        .top(113%);
         left: 0;
         top: @top;
         font-family: 'Plus Jakarta Sans';
@@ -227,7 +253,7 @@
         line-height: @height;
         text-align: center;
         position: absolute;
-        .top(128%);
+        .top(124%);
         left: 0;
         top: @top;
         z-index: 4;
@@ -236,7 +262,8 @@
             user-select: none;
             .height(37.36px);
             height: @height;
-            margin: 0 10px;
+            .num(16.605px);
+            margin: 0 @num;
         }
     }
 }
@@ -345,7 +372,7 @@
     width: @width;
     margin: 0 auto;
     box-sizing: border-box;
-    .num(210px);
+    .num(260px);
     .top(342px);
     .bottom(271px);
     padding: 0 @num @bottom @num;
@@ -435,7 +462,7 @@
     width: @width;
     margin: 0 auto;
     box-sizing: border-box;
-    .num(210px);
+    .num(260px);
     .top(200px);
     .bottom(109px);
     padding: @top @num @bottom @num;
@@ -550,7 +577,7 @@
 }
 
 .s3 {
-    .num(210px);
+    .num(260px);
     .bottom(309px);
     filter: alpha(opacity=0);
     -moz-opacity: 0;
@@ -591,7 +618,7 @@
 .s4{
     position: relative;
     box-sizing: border-box;
-    .num(210px);
+    .num(260px);
     //.top(200px);
     .bottom(238px);
     filter: alpha(opacity=0);
@@ -669,9 +696,9 @@
     opacity: 0;
     .t-line{
         width: 100%;
-        height: auto;
         .height(576px);
-        min-height: @height;
+        object-fit: cover;
+        height: @height;
     }
     .t-box{
         width: 100%;
@@ -955,47 +982,15 @@
         justify-content: center;
 
         .t-7-img{
-            .width(54px);
-            width: @width;
-            .height(61px);
-            height: @height;
             cursor: pointer;
             user-select: none;
             position: relative;
             .num(30px);
             margin: 0 @num;
             vertical-align: middle;
-            &.i0{
-                .width(54px);
-                width: @width;
-                .height(61px);
-                height: @height;
-            }
-            &.i1{
-                .width(47px);
-                width: @width;
-                .height(61px);
-                height: @height;
-                top: -2px;
-            }
-            &.i2{
-                .width(61px);
-                width: @width;
-                .height(49px);
-                height: @height;
-            }
-            &.i3{
-                .width(58px);
-                width: @width;
-                .height(55px);
-                height: @height;
-            }
-            &.i4{
-                .width(59px);
-                width: @width;
-                .height(51px);
-                height: @height;
-            }
+            width: auto;
+            .height(55px);
+            height: @height;
         }
     }
     .t-footer{
