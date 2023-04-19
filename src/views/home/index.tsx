@@ -16,6 +16,10 @@ const openUrl = (url:any):void => {
     if(url)
         window.open(url, '_blank');
 }
+const openUrlSelf = (url:any):void => {
+    if(url)
+        window.open(url, '_self');
+}
 
 // 头部导航
 interface menuText {
@@ -71,7 +75,7 @@ const THead:React.FC<HomePropsType> = () => {
             <img className="t-logo" src={require('./images/s1/logo.png')} alt=""/>
             {
                 menuLst.map((menu: menuText, idx: number) => {
-                    return <span onClick={openUrl.bind(this, menu.url)} className={className(menu)} key={`thead${idx}`}>
+                    return <span onClick={openUrlSelf.bind(this, menu.url)} className={className(menu)} key={`thead${idx}`}>
                         {menu.text}
                         <span className={['subText', menu.subText ? 'show' : ''].join(' ')}>{menu.subText}</span>
                     </span>
