@@ -424,7 +424,7 @@ const Home:React.FC<HomePropsType> = (props, context) => {
     const [ animation5, setAnimation5 ] = useState<boolean>(false);
     const [ animation6, setAnimation6 ] = useState<boolean>(false);
     const [ animation7, setAnimation7 ] = useState<boolean>(false);
-    const windowClientHeight: number = document.body.clientHeight || document.documentElement.clientHeight;
+    let windowClientHeight: number = document.body.clientHeight || document.documentElement.clientHeight;
     const s1Ref:any = useRef();
     const s2Ref:any = useRef();
     const s3Ref:any = useRef();
@@ -432,6 +432,9 @@ const Home:React.FC<HomePropsType> = (props, context) => {
     const swiperRef:any = useRef();
     const s5Ref:any = useRef();
     const s6Ref:any = useRef();
+    window.onresize = () => {
+        windowClientHeight = document.body.clientHeight || document.documentElement.clientHeight;
+    }
     useLayoutEffect(() => {
         if(windowClientHeight > s1Ref.current.clientHeight) {
             setAnimation2(true);
