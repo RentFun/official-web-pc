@@ -435,6 +435,12 @@ const Home:React.FC<HomePropsType> = (props, context) => {
     window.onresize = () => {
         windowClientHeight = document.body.clientHeight || document.documentElement.clientHeight;
     }
+    useEffect(() => {
+        window.onresize = () => {
+            windowClientHeight = document.body.clientHeight || document.documentElement.clientHeight;
+        }
+        return () => {};
+    }, [])
     useLayoutEffect(() => {
         if(windowClientHeight > s1Ref.current.clientHeight) {
             setAnimation2(true);
