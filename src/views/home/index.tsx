@@ -191,7 +191,7 @@ const t5Data: t5Block[] = [
     },
     {
         icon: require('./images/s5/10.png'),
-        url: 'https://twitter.com/_martialfarts',
+        url: 'https://twitter.com/_dashred',
     },
     {
         icon: require('./images/s5/11.png'),
