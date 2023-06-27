@@ -8,7 +8,7 @@ const _loading = () => {
         position: 'fixed',
         left: 0,
         top: 0,
-        background: 'rgba(0, 0, 0, 0.7)',
+        background: '#130420',
         zIndex: 9999999,
         display: 'flex',
         alignItems: 'center',
