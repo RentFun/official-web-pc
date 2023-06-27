@@ -436,6 +436,8 @@ const Home:React.FC<HomePropsType> = (props, context) => {
     const swiperRef:any = useRef();
     const s5Ref:any = useRef();
     const s6Ref:any = useRef();
+    const [loadTimer, setLoadTimer] = useState<any>(null);
+    const [loadStatus, setLoadStatus] = useState<boolean>(true);
     window.onresize = () => {
         windowClientHeight = document.body.clientHeight || document.documentElement.clientHeight;
     }
@@ -452,6 +454,12 @@ const Home:React.FC<HomePropsType> = (props, context) => {
             setAnimation2(false);
         }
     }, [ document ]);
+
+    useEffect(() => {
+        setLoadStatus(true);
+        _loading();
+    }, []);
+
 
     useEffect(() => {
         swiperObj = new Swiper ('.swiper-container', {
@@ -521,8 +529,22 @@ const Home:React.FC<HomePropsType> = (props, context) => {
         }
     }
 
+    const _loading = () => {
+        setLoadTimer(setTimeout(() => {
+            if(loadTimer)
+                clearTimeout(loadTimer);
+            setLoadStatus(false);
+        }, 3000));
+    }
+    const _loadingEl = () => {
+        return <div className={`t-loading-section ${loadStatus ? '' : 'none'}`}>
+            <img src={require("./images/loading.gif")} alt="load"/>
+        </div>
+    }
+
     return (
         <div onScrollCapture={scroll} className="t-home-section">
+            {_loadingEl()}
             <TSection1 ref={s1Ref} clientHeight={windowClientHeight}/>
             <TSection2 ref={s2Ref} animation={animation2}/>
             <TSection3 ref={s3Ref} animation={animation3}/>
