@@ -402,7 +402,7 @@ const TSection6Second: React.FC<ChildPropsType> = (props) => {
                     <h3 className='s6-second-title'>Game Partners</h3>
                     <ul>
                         <li className='flex s6-second-top'>
-                            <img  onClick={openUrl.bind(this, 'https://dininhoadventures.com/')} className="t-img t-img-1" src={require("./images/s6-1/1.png")} alt=""/>
+                            <img  onClick={openUrl.bind(this, 'https://dininhoadventures.com/')} className="t-pos t-img t-img-1" src={require("./images/s6-1/1.png")} alt=""/>
                             <img  onClick={openUrl.bind(this, 'https://thegainlings.io/landing/')} className="t-img t-img-2" src={require("./images/s6-1/2.png")} alt=""/>
                             <img  onClick={openUrl.bind(this, 'https://lifeverse.gg/')} className="t-img t-img-3" src={require("./images/s6-1/3.png")} alt=""/>
                             <img  onClick={openUrl.bind(this, 'https://primapes.gg/')}  className="t-img t-img-4" src={require("./images/s6-1/4.png")} alt=""/>
@@ -416,7 +416,7 @@ const TSection6Second: React.FC<ChildPropsType> = (props) => {
             </div>
         </div>
     )
-}    
+}
 const TSection7: React.FC<ChildPropsType> = (props) => {
     const { animation } = props;
     return(
